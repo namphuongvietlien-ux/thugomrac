@@ -1,0 +1,25 @@
+[
+  {
+    "id": "NV001",
+    "name": "Nguyễn Văn A",
+    "phone": "0901 234 567",
+    "areaDescription": "Đường Lê Lợi (số 1-200), Phường 1, Quận 3",
+    "keywords": ["le loi", "lê lợi", "p1q3", "phuong 1 quan 3"]
+  },
+  {
+    "id": "NV002",
+    "name": "Trần Thị B",
+    "phone": "0902 345 678",
+    "areaDescription": "Đường Lê Lợi (số 201-500), Phường 1, Quận 3",
+    "keywords": ["le loi 201-500", "lê lợi 201-500", "p1q3", "phuong 1 quan 3"]
+  },
+  {
+    "id": "NV003",
+    "name": "Phạm Văn C",
+    "phone": "0903 456 789",
+    "areaDescription": "Đường Nguyễn Huệ, Phường Bến Nghé, Quận 1",
+    "keywords": ["nguyen hue", "nguyễn huệ", "ben nghe", "q1", "quan 1"]
+  }
+]
+
+

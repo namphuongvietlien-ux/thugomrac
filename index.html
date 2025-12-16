@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Tra cứu người thu gom rác</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header class="header">
+        <h1>Tra cứu người thu gom rác</h1>
+        <p>Nhập địa chỉ nhà để tìm thông tin người thu gom phụ trách.</p>
+      </header>
+
+      <main class="main">
+        <section class="search-card">
+          <label for="address-input" class="search-label">
+            Địa chỉ nhà (ví dụ: 123 Lê Lợi, Phường 1, Quận 3)
+          </label>
+          <div class="search-row">
+            <input
+              id="address-input"
+              type="text"
+              placeholder="Nhập địa chỉ nhà..."
+            />
+            <button id="search-btn">Tìm kiếm</button>
+          </div>
+          <p class="hint">
+            Có thể gõ một phần địa chỉ, ví dụ: “Lê Lợi, P.1, Q.3”.
+          </p>
+        </section>
+
+        <section id="result-section" class="result-card hidden">
+          <h2>Kết quả</h2>
+          <div id="result-content"></div>
+        </section>
+
+        <section class="info-card">
+          <h3>Quản trị viên</h3>
+          <p>
+            File dữ liệu: <code>collectors-data.json</code>. Cập nhật file này
+            để thay đổi thông tin người thu gom rác.
+          </p>
+        </section>
+      </main>
+
+      <footer class="footer">
+        &copy; <span id="year"></span> Hệ thống tra cứu thu gom rác.
+      </footer>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
+
+
