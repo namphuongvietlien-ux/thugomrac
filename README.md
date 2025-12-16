@@ -9,20 +9,51 @@
 - **`app.js`**: Logic đọc dữ liệu và tìm kiếm theo địa chỉ.
 - **`collectors-data.json`**: Dữ liệu người thu gom rác (có thể thay bằng dữ liệu thực tế).
 
-### 3. Cách chạy dự án (đơn giản, không cần cài đặt gì phức tạp)
-#### Cách 1: Mở trực tiếp (không khuyến khích cho fetch JSON)
-- Mở file `index.html` bằng trình duyệt.
-- Một số trình duyệt chặn `fetch` file JSON khi mở trực tiếp, nếu không thấy kết quả hãy dùng Cách 2.
+### 3. Cách chạy dự án với Node.js (backend + frontend)
 
-#### Cách 2: Chạy với server tĩnh đơn giản
-- **Cách dùng Python (nếu máy có Python)**:
-  - Mở Command Prompt / PowerShell tại thư mục dự án.
-  - Chạy:
-    - Python 3:
-      ```bash
-      python -m http.server 8000
-      ```
-  - Mở trình duyệt và truy cập: `http://localhost:8000`
+#### 3.1 Cài dependencies
+- Mở PowerShell tại thư mục dự án:
+  ```bash
+  cd D:\gomrac
+  npm install
+  ```
+
+#### 3.2 Chạy server
+- Chạy server Node:
+  ```bash
+  npm start
+  ```
+- Server chạy tại: `http://localhost:3000`
+- Mở trình duyệt và truy cập: `http://localhost:3000`
+
+Backend Node.js (file `server.js`) sẽ:
+- Phục vụ file tĩnh: `index.html`, `style.css`, `app.js`, ...
+- Cung cấp API:
+  - `GET /api/collectors`: trả về toàn bộ danh sách người thu gom.
+  - `GET /api/search?address=...`: trả về **danh sách** người thu gom phù hợp (có thể nhiều người cùng tuyến), kèm điểm khớp và gợi ý gần đúng (fuzzy search).
+
+### 4. Deploy backend + frontend lên Vercel
+
+#### 4.1. Cách Vercel hoạt động với dự án này
+- Frontend: Vercel sẽ phục vụ `index.html`, `style.css`, `app.js`, ... như site tĩnh.
+- Backend: các file trong thư mục `api/`:
+  - `api/search.js` tương đương endpoint `GET /api/search`.
+  - `api/collectors.js` tương đương endpoint `GET /api/collectors`.
+- Khi deploy lên Vercel, `app.js` gọi `/api/search?address=...` sẽ tự động đi vào hàm trong `api/search.js`.
+
+`server.js` chủ yếu dùng để chạy **local** (trên máy bạn) khi cần backend dạng Express; lên Vercel thì đã có các hàm trong thư mục `api/` xử lý thay.
+
+#### 4.2. Các bước deploy tóm tắt
+1. Đưa toàn bộ mã nguồn (bao gồm `index.html`, `app.js`, `collectors-data.json`, thư mục `api/`, `package.json`, ...) lên GitHub.
+2. Vào Vercel, đăng nhập bằng GitHub và **Import Project** từ repo đó.
+3. Cấu hình:
+   - Framework: **Other** hoặc **Static HTML**.
+   - Build Command: để trống.
+   - Output directory: `.`.
+4. Bấm **Deploy**.
+5. Sau khi deploy xong, Vercel cấp cho bạn 1 URL dạng `https://ten-project.vercel.app`, tại đó:
+   - Giao diện người dùng truy cập bình thường.
+   - Các request tới `/api/search` và `/api/collectors` chạy trên backend Node.js serverless của Vercel.
 
 ### 4. Cấu trúc dữ liệu người thu gom
 - File: `collectors-data.json`
@@ -59,7 +90,44 @@
 - Hệ thống:
   - Chuẩn hóa chuỗi (viết thường, bỏ dấu, bỏ ký tự đặc biệt).
   - Đọc `collectors-data.json`.
-  - So sánh phần địa chỉ chuẩn hóa với từng `keywords` của nhân viên.
-  - Nếu khớp, hiển thị nhân viên tương ứng (tên, điện thoại, khu vực phụ trách).
+  - So sánh địa chỉ với `keywords` (ưu tiên cao nhất).
+  - Nếu không có keyword match, tính độ khớp dựa trên trùng từ giữa địa chỉ và `areaDescription`.
+  - Trả về **tất cả** nhân viên có độ khớp đủ cao, sắp xếp giảm dần theo điểm; frontend hiển thị nhiều người nếu cần (ví dụ một tuyến đường chia nhiều đoạn/ca).
+
+### 7. Tự động chuyển file Excel `DS_NV_thugom.xlsx` sang `collectors-data.json`
+
+Trong thư mục dự án đã có file `convert-excel-to-json.js` để hỗ trợ.
+
+#### 7.1 Cấu hình mapping cột
+- Mở file `convert-excel-to-json.js` và chỉnh lại phần:
+
+```js
+const COLUMN_MAP = {
+  id: "Mã NV",              // tên cột mã NV trong Excel
+  name: "Họ tên",           // tên cột họ tên
+  phone: "SĐT",             // tên cột số điện thoại
+  areaDescription: "Khu vực phụ trách", // tên cột mô tả khu vực
+  keywords: "Từ khóa"       // tên cột chứa từ khóa (cách nhau bởi dấu phẩy hoặc chấm phẩy)
+};
+```
+
+- Đảm bảo các chuỗi bên phải (ví dụ `"Mã NV"`, `"Họ tên"`, ...) trùng đúng với header của file Excel `DS_NV_thugom.xlsx`.
+
+#### 7.2 Chạy chuyển đổi
+
+```bash
+cd D:\gomrac
+npm install        # (chỉ lần đầu, nếu chưa cài)
+npm run convert
+```
+
+- Script sẽ:
+  - Đọc file `DS_NV_thugom.xlsx` (sheet đầu tiên).
+  - Lấy từng dòng theo mapping ở `COLUMN_MAP`.
+  - Tự động sinh file `collectors-data.json` mới.
+
+Sau khi chạy xong:
+- Kiểm tra lại nội dung `collectors-data.json`.
+- Nếu đúng, `git add collectors-data.json` → `git commit` → `git push` để Vercel tự deploy dữ liệu mới.
 
 

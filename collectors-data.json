@@ -1,51 +1,44 @@
 [
   {
     "id": "NV001",
-    "name": "",
+    "name": "Nguyễn Văn A",
     "phone": "09xx.xxx.xxx",
     "areaDescription": "Đường Số 1 (Đoạn từ Phan Anh đến Hậu Giang)",
-    "keywords": []
+    "keywords": ["duong so 1", "phan anh", "hau giang", "so 1"]
   },
   {
     "id": "NV002",
-    "name": "",
+    "name": "Trần Thị B",
     "phone": "09xx.xxx.xxx",
     "areaDescription": "Đường Số 2 (Toàn tuyến)",
-    "keywords": []
+    "keywords": ["duong so 2", "so 2", "toan tuyen"]
   },
   {
     "id": "NV003",
-    "name": "",
+    "name": "Lê Văn C",
     "phone": "09xx.xxx.xxx",
     "areaDescription": "Đường Số 3 & Đường Số 4 (Chỉ khu vực chợ)",
-    "keywords": []
+    "keywords": ["duong so 3", "duong so 4", "so 3", "so 4", "cho"]
   },
   {
     "id": "NV004",
-    "name": "",
+    "name": "Phạm Thị D",
     "phone": "09xx.xxx.xxx",
     "areaDescription": "Các hẻm trên Đường Số 5",
-    "keywords": []
+    "keywords": ["duong so 5", "hem so 5", "so 5", "hem"]
   },
   {
     "id": "NV005",
-    "name": "",
+    "name": "Hoàng Văn E",
     "phone": "09xx.xxx.xxx",
     "areaDescription": "Đường Hậu Giang (Đoạn qua Phường Bình Phú)",
-    "keywords": []
+    "keywords": ["hau giang", "phuong binh phu", "binh phu"]
   },
   {
     "id": "NV006",
-    "name": "",
+    "name": "Dự phòng",
     "phone": "09xx.xxx.xxx",
-    "areaDescription": "Khu vực chung cư & tòa nhà thương mại (Nếu có)",
-    "keywords": []
-  },
-  {
-    "id": "...",
-    "name": "",
-    "phone": "...",
-    "areaDescription": "...",
-    "keywords": []
+    "areaDescription": "Khu vực chung cư & tòa nhà thương mại",
+    "keywords": ["chung cu", "toa nha", "thuong mai"]
   }
 ]
