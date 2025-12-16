@@ -1,25 +1,51 @@
 [
   {
     "id": "NV001",
-    "name": "Nguyễn Văn A",
-    "phone": "0901 234 567",
-    "areaDescription": "Đường Lê Lợi (số 1-200), Phường 1, Quận 3",
-    "keywords": ["le loi", "lê lợi", "p1q3", "phuong 1 quan 3"]
+    "name": "",
+    "phone": "09xx.xxx.xxx",
+    "areaDescription": "Đường Số 1 (Đoạn từ Phan Anh đến Hậu Giang)",
+    "keywords": []
   },
   {
     "id": "NV002",
-    "name": "Trần Thị B",
-    "phone": "0902 345 678",
-    "areaDescription": "Đường Lê Lợi (số 201-500), Phường 1, Quận 3",
-    "keywords": ["le loi 201-500", "lê lợi 201-500", "p1q3", "phuong 1 quan 3"]
+    "name": "",
+    "phone": "09xx.xxx.xxx",
+    "areaDescription": "Đường Số 2 (Toàn tuyến)",
+    "keywords": []
   },
   {
     "id": "NV003",
-    "name": "Phạm Văn C",
-    "phone": "0903 456 789",
-    "areaDescription": "Đường Nguyễn Huệ, Phường Bến Nghé, Quận 1",
-    "keywords": ["nguyen hue", "nguyễn huệ", "ben nghe", "q1", "quan 1"]
+    "name": "",
+    "phone": "09xx.xxx.xxx",
+    "areaDescription": "Đường Số 3 & Đường Số 4 (Chỉ khu vực chợ)",
+    "keywords": []
+  },
+  {
+    "id": "NV004",
+    "name": "",
+    "phone": "09xx.xxx.xxx",
+    "areaDescription": "Các hẻm trên Đường Số 5",
+    "keywords": []
+  },
+  {
+    "id": "NV005",
+    "name": "",
+    "phone": "09xx.xxx.xxx",
+    "areaDescription": "Đường Hậu Giang (Đoạn qua Phường Bình Phú)",
+    "keywords": []
+  },
+  {
+    "id": "NV006",
+    "name": "",
+    "phone": "09xx.xxx.xxx",
+    "areaDescription": "Khu vực chung cư & tòa nhà thương mại (Nếu có)",
+    "keywords": []
+  },
+  {
+    "id": "...",
+    "name": "",
+    "phone": "...",
+    "areaDescription": "...",
+    "keywords": []
   }
 ]
-
-
